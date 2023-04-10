@@ -20,9 +20,22 @@ Hight : 0x02C7
 [2] What is the key for decrypting a hidden byte stream?
 -------------
 
+사진에 주어진 16진수 값을 시간으로 변경시켜야 한다.
+여러가지 시간 포맷 중에서 수업시간에 다룬 window filetime과 unix timestamp를 이용하여 시간 값을 알아낼 수 있었다.
+
+key : 38
 
 [3] What is the latitude and longitude stored in the hidden byte stream?
 -------------
+
+파일 내부를 hex editor로 다시 살펴본 결과, 파일 헤더 바로 아래 파일에 필요없는 문자열을 발견하였다.
+이 문자열을 2번에서 구한 key값을 이용해 decoding 할 수 있을 것으로 예상하였다.
+특히 저렇게 짧은 key를 사용하는 암호 알고리즘은 사실상 없으므로, 암호 알고리즘이 아닌 다른 간단한 알고리즘일 것으로 예상하였다.
+
+그리고 38과 문자열을 XOR 연산을 통해 1차적으로 decoding한 후, 문자열의 끝부분이 '='으로 끝나는 것을 확인하고 base64 decoding해준 결과 특정한 형식의 문자열을 얻을 수 있었다.
+
+
+
 
 [4] What is the Korean name of the place where the coordinates point to?
 Represent it as UTF-8 hex-encoded bytes.
