@@ -33,10 +33,16 @@ key : 38
 특히 저렇게 짧은 key를 사용하는 암호 알고리즘은 사실상 없으므로, 암호 알고리즘이 아닌 다른 간단한 알고리즘일 것으로 예상하였다.
 
 그리고 38과 문자열을 XOR 연산을 통해 1차적으로 decoding한 후, 문자열의 끝부분이 '='으로 끝나는 것을 확인하고 base64 decoding해준 결과 특정한 형식의 문자열을 얻을 수 있었다.
+마지막으로 TCEZP 라는 좌표를 나타내는 문자열이 존재하는지를 검색해보았는데 존재하지 않는다는 사실을 파악하였다.
+그래서 마지막으로, 알파벳만 변경시킨다는 점을 이용해 ROT13을 적용시켜본 결과 NMEA 형식의 문자열을 발견할 수 있었다.
+
+이 값을 GPRMC & GPGGA decoder에 대입하여 위도와 경도를 구할 수 있었다.
 
 
-
-
-[4] What is the Korean name of the place where the coordinates point to?
-Represent it as UTF-8 hex-encoded bytes.
+[4] What is the Korean name of the place where the coordinates point to? Represent it as UTF-8 hex-encoded bytes.
 -------------
+
+해당 좌표는 독도를 가리킨다.
+eb 8f 85 eb 8f 84
+
+
